@@ -4,12 +4,14 @@ import { ApiConectController } from './api-conect.controller';
 import { HttpModule } from '@nestjs/axios';
 
 @Module({
-  imports: [HttpModule.registerAsync({
+  imports: [
+    HttpModule.registerAsync({
       useFactory: () => ({
         timeout: 5000,
         maxRedirects: 5,
       }),
-    }),],
+    }),
+  ],
   controllers: [ApiConectController],
   providers: [ApiConectService],
   exports: [HttpModule],
