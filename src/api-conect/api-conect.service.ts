@@ -12,7 +12,7 @@ export class ApiConectService {
     
     return await this.httpService
         .get(`${url}?ts=${process.env.TIMESTAMP}&apikey=${process.env.APIKEY}&hash=${process.env.HASH}`
-        ).pipe(map((res)=>res.data.results))
+        ).pipe(map((res)=>res.data.data.results.map((res)=>{return {name:res.name,description:res.description}})))
 
       
     
