@@ -3,9 +3,20 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ApiConectModule } from './api-conect/api-conect.module';
 import { ConfigModule } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [ConfigModule.forRoot(),ApiConectModule],
+  imports: [ConfigModule.forRoot(),TypeOrmModule.forRoot({
+    type: 'postgres',
+      host: process.env.DB_HOST,
+      port: +process.env.DB_PORT,
+      database: process.env.DB_NAME,
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      autoLoadEntities: true,
+      //este no se suele usar en produccion
+      synchronize: true,
+  }),ApiConectModule],
   controllers: [AppController],
   providers: [AppService],
 })

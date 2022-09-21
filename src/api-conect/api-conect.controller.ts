@@ -1,4 +1,4 @@
-import { Controller, Get, Query} from '@nestjs/common';
+import { Controller, Get, Post, Query} from '@nestjs/common';
 import { ApiConectService } from './api-conect.service';
 import { CreateApiConectDto } from './dto/create-api-conect.dto';
 import { UpdateApiConectDto } from './dto/update-api-conect.dto';
@@ -10,5 +10,11 @@ export class ApiConectController {
   @Get('marvel')
   getCharacters(@Query() params: CreateApiConectDto) {
     return this.apiConectService.getCharacters();
+  }
+
+  @Post('character')
+  postCharacters(){
+    return this.apiConectService.createCharacter();
+
   }
 }
